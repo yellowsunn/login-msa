@@ -1,0 +1,15 @@
+spring:
+  config:
+    activate:
+      on-profile: local
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 260450438379-kc2vpk07h60qn6ojmb0t9u048dckm6a5.apps.googleusercontent.com
+            client-secret: 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
+            scope:
+              - profile
+              - email
+            redirect-uri: http://localhost:8080/login/oauth2/code/google
