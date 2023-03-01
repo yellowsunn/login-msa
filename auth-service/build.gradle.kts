@@ -24,7 +24,11 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+    implementation("org.springframework.boot:spring-boot-starter-data-redis-reactive")
     implementation("io.netty:netty-resolver-dns-native-macos:4.1.68.Final:osx-aarch_64") // MacOS m1 dns error fix
+    implementation("it.ozimov:embedded-redis:0.7.3") {
+        exclude("org.slf4j", "slf4j-simple")
+    }
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
     testImplementation("org.springframework.security:spring-security-test")

@@ -13,3 +13,18 @@ spring:
               - profile
               - email
             redirect-uri: http://localhost:8080/login/oauth2/code/google
+  data:
+    redis:
+      client-type: lettuce
+      host: localhost
+      port: 6379
+      connect-timeout: 3000
+      timeout: 1000
+
+logging:
+  level:
+    org:
+      springframework:
+        security: trace
+        web:
+          server: trace
