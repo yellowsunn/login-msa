@@ -1,3 +1,14 @@
 spring:
   profiles:
     default: local
+  data:
+    redis:
+      client-type: lettuce
+server:
+  reactive:
+    session:
+      cookie:
+        name: X-SESSION-ID
+
+redis-session:
+  inactive-interval: 5m

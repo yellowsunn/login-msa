@@ -10,13 +10,16 @@ import redis.embedded.RedisServer
 @Profile("local")
 @Configuration
 class EmbeddedRedisConfig(
-    @Value("\${spring.data.redis.port}")private val redisPort: Int,
+    @Value("\${spring.data.redis.port}") private val redisPort: Int,
 ) {
     private lateinit var redisServer: RedisServer
 
     @PostConstruct
     fun startRedisServer() {
-        redisServer = RedisServer(redisPort)
+        redisServer = RedisServer.builder()
+            .port(redisPort)
+            .setting("maxmemory 512mb")
+            .build()
         redisServer.start()
     }
 
