@@ -7,10 +7,10 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.oauth2.client.userinfo.DefaultReactiveOAuth2UserService
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest
 import org.springframework.security.oauth2.client.userinfo.ReactiveOAuth2UserService
-import org.springframework.security.oauth2.core.user.DefaultOAuth2User
 import org.springframework.security.oauth2.core.user.OAuth2User
 import org.springframework.stereotype.Component
 import reactor.core.publisher.Mono
+import java.util.*
 
 @Component
 class CustomReactiveOAuth2UserService : ReactiveOAuth2UserService<OAuth2UserRequest, OAuth2User> {
@@ -25,10 +25,16 @@ class CustomReactiveOAuth2UserService : ReactiveOAuth2UserService<OAuth2UserRequ
         val userNameAttributeName =
             userRequest.clientRegistration.providerDetails.userInfoEndpoint.userNameAttributeName
 
-        DefaultOAuth2User(
-            listOf(SimpleGrantedAuthority(Role.USER.key)),
-            oAuth2User.attributes,
-            userNameAttributeName,
+        // TODO: user 서비스 아이디 생성 요청
+        val userId = UUID.randomUUID().toString()
+        val email = "test@example.com"
+
+        CustomOAuth2User(
+            authorities = listOf(SimpleGrantedAuthority(Role.USER.key)),
+            attributes = oAuth2User.attributes,
+            nameAttributeKey = userNameAttributeName,
+            userId = userId,
+            email = email
         )
     }
 }
