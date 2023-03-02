@@ -20,6 +20,10 @@ spring:
       connect-timeout: 3000
       timeout: 1000
 
+access-token:
+  expiration: 1d
+  secret: 4t7w!z%C*F-JaNdRgUkXp2s5v8x/A?D(G+KbPeShVmYq3t6w9z$B&E)H@McQfTjW
+
 logging:
   level:
     org:

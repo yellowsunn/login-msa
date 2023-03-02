@@ -1,5 +1,6 @@
 package com.yellwsunn.authservice.config
 
+import com.yellwsunn.authservice.security.oauth2.CustomRedirectServerAuthenticationSuccessHandler
 import com.yellwsunn.authservice.security.oauth2.CustomServerSecurityContextRepository
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -14,10 +15,11 @@ class SecurityConfig {
     fun securityFilterChain(
         http: ServerHttpSecurity,
         customServerSecurityContextRepository: CustomServerSecurityContextRepository,
+        authenticationSuccessHandler: CustomRedirectServerAuthenticationSuccessHandler,
     ): SecurityWebFilterChain {
         return http
             .authorizeExchange { it.anyExchange().authenticated() }
-            .oauth2Login { }
+            .oauth2Login { it.authenticationSuccessHandler(authenticationSuccessHandler) }
             .securityContextRepository(customServerSecurityContextRepository)
             .build()
     }

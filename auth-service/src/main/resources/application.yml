@@ -8,7 +8,7 @@ server:
   reactive:
     session:
       cookie:
-        name: X-SESSION-ID
+        name: X_SESSION_ID
 
 redis-session:
   inactive-interval: 5m
