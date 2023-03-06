@@ -9,8 +9,8 @@ export default {
   name: "OAuth2Login",
   methods: {
     async googleLogin() {
-      const currentUrl = window.location.href
-      const callbackUrl = `${window.location.origin}/set-token?redirect_url=${currentUrl}`
+      const prevUrl = sessionStorage.getItem('prev_url') || '/'
+      const callbackUrl = `${window.location.origin}/set-token?prev_url=${prevUrl}`
       window.location = `http://localhost:8000/oauth2/authorization/google?callback_url=${callbackUrl}`
     }
   }
@@ -21,6 +21,7 @@ export default {
 .btn-group {
   width: 100%;
 }
+
 .btn-google {
   width: 100%;
   background-color: white;
