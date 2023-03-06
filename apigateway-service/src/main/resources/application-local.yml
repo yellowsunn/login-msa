@@ -6,14 +6,22 @@ spring:
       on-profile: local
   cloud:
     gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowed-origins: "*"
+            allowed-headers: "*"
+            allowed-methods: "*"
       routes:
         - id: auth-service-oauth-login
-          uri: http://localhost:8081
+          uri: http://localhost:8001
           predicates:
             - Path=/oauth2/authorization/**
-            - Method=GET
+            - Method=GET, OPTIONS
+          filters:
+            - OAuth2CallbackUrlFilter
         - id: auth-service-oauth-code
-          uri: http://localhost:8081
+          uri: http://localhost:8001
           predicates:
             - Path=/login/oauth2/code/**
-            - Method=GET
+            - Method=GET, OPTIONS
