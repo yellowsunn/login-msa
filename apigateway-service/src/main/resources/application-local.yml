@@ -1,0 +1,19 @@
+server:
+  port: 8000
+spring:
+  config:
+    activate:
+      on-profile: local
+  cloud:
+    gateway:
+      routes:
+        - id: auth-service-oauth-login
+          uri: http://localhost:8081
+          predicates:
+            - Path=/oauth2/authorization/**
+            - Method=GET
+        - id: auth-service-oauth-code
+          uri: http://localhost:8081
+          predicates:
+            - Path=/login/oauth2/code/**
+            - Method=GET

@@ -1,7 +1,10 @@
+server:
+  port: 8001
+
 spring:
   config:
     activate:
-      on-profile: local
+      on-profile: local-gateway
   security:
     oauth2:
       client:
@@ -12,7 +15,7 @@ spring:
             scope:
               - profile
               - email
-            redirect-uri: http://localhost:8080/login/oauth2/code/google
+            redirect-uri: http://localhost:8000/login/oauth2/code/google
   data:
     redis:
       host: localhost
