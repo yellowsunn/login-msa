@@ -1,6 +1,6 @@
-package com.yellowsunn.userservice.domain.user
+package com.yellowsunn.userservice.constant
 
-enum class Role(
+enum class UserRole(
     val description: String,
 ) {
     ROLE_USER("일반 사용자"),
