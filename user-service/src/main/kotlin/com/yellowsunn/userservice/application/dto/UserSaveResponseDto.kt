@@ -15,7 +15,7 @@ data class UserSaveResponseDto(
     constructor(
         user: User,
     ) : this(
-        pk = user.pk!!,
+        pk = user.pk,
         userId = user.userId,
         email = user.email,
         role = user.role,

@@ -23,7 +23,7 @@ class User(
 ) : BaseTimeEntity() {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val pk: Long? = null
+    val pk: Long = 0
 
     @Column(nullable = false)
     val userId: String = UUID.randomUUID().toString()
