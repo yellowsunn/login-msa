@@ -1,1 +1,13 @@
-
+spring:
+  profiles:
+    default: local
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      # Encountered deprecated setting [javax.persistence.sharedCache.mode], use [jakarta.persistence.sharedCache.mode] instead
+      jakarta.persistence.sharedCache.mode: ALL
+  flyway:
+    baseline-version: 0
+    baseline-on-migrate: true
