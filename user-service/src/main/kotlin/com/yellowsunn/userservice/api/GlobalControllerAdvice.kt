@@ -1,5 +1,6 @@
 package com.yellowsunn.userservice.api
 
+import com.yellowsunn.userservice.exception.AuthenticationException
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
@@ -30,6 +31,13 @@ class GlobalControllerAdvice {
     @ExceptionHandler(HttpMessageNotReadableException::class)
     protected fun handleHttpMessageNotReadableException(e: HttpMessageNotReadableException): ResultResponse<Unit> {
         logger.warn("Failed to parse http message. message={}", e.message, e)
+        return ResultResponse.fail(e.message)
+    }
+
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ExceptionHandler(AuthenticationException::class)
+    protected fun handleAuthenticationException(e: AuthenticationException): ResultResponse<Unit> {
+        logger.warn("Authentication failed. message={}", e.message, e)
         return ResultResponse.fail(e.message)
     }
 
