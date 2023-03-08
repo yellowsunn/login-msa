@@ -1,10 +1,9 @@
-package com.yellwsunn.authservice.service
+package com.yellwsunn.authservice.domain.token
 
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.yellwsunn.authservice.dto.AccessTokenPayload
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jws
 import io.jsonwebtoken.JwtParser

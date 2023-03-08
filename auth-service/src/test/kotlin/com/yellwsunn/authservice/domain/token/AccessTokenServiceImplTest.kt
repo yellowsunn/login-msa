@@ -1,6 +1,5 @@
-package com.yellwsunn.authservice.service
+package com.yellwsunn.authservice.domain.token
 
-import com.yellwsunn.authservice.dto.AccessTokenPayload
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import java.time.Duration

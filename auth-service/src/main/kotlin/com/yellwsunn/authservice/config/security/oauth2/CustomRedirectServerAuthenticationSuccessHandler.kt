@@ -1,6 +1,7 @@
-package com.yellwsunn.authservice.security.oauth2
+package com.yellwsunn.authservice.config.security.oauth2
 
-import com.yellwsunn.authservice.service.AccessTokenService
+import com.yellwsunn.authservice.domain.token.AccessTokenService
+import com.yellwsunn.authservice.config.security.oauth2.dto.CustomOAuth2User
 import kotlinx.coroutines.reactor.awaitSingleOrNull
 import kotlinx.coroutines.reactor.mono
 import org.slf4j.Logger

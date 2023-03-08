@@ -1,6 +1,4 @@
-package com.yellwsunn.authservice.service
-
-import com.yellwsunn.authservice.dto.AccessTokenPayload
+package com.yellwsunn.authservice.domain.token
 
 interface AccessTokenService {
     fun generateToken(accessTokenPayload: AccessTokenPayload): String

@@ -1,4 +1,4 @@
-package com.yellwsunn.authservice.dto
+package com.yellwsunn.authservice.domain.token
 
 data class AccessTokenPayload(
     val userId: String,

@@ -1,6 +1,6 @@
-package com.yellwsunn.authservice.security.oauth2
+package com.yellwsunn.authservice.config.security.oauth2.dto
 
-import com.yellwsunn.authservice.dto.AccessTokenPayload
+import com.yellwsunn.authservice.domain.token.AccessTokenPayload
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User
 

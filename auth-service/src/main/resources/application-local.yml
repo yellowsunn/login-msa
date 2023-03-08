@@ -23,6 +23,7 @@ spring:
 access-token:
   expiration: 1d
   secret: 4t7w!z%C*F-JaNdRgUkXp2s5v8x/A?D(G+KbPeShVmYq3t6w9z$B&E)H@McQfTjW
+
 logging:
   level:
     org:
@@ -30,3 +31,6 @@ logging:
         security: trace
         web:
           server: trace
+
+micro-services:
+  user-endpoint: http://localhost:8002
