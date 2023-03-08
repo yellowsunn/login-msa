@@ -25,3 +25,14 @@ spring:
           predicates:
             - Path=/login/oauth2/code/**
             - Method=GET, OPTIONS
+        - id: user-service
+          uri: http://localhost:8002
+          predicates:
+            - Path=/api/*/users/**
+          filters:
+            - RemoveRequestHeader=Cookie
+            - AuthorizationHeaderFilter
+            - RewritePath=/api/(?<version>\w+)/users/(?<path>.*), /external/api/$\{version}/users/$\{path}
+
+access-token:
+  secret: 4t7w!z%C*F-JaNdRgUkXp2s5v8x/A?D(G+KbPeShVmYq3t6w9z$B&E)H@McQfTjW
