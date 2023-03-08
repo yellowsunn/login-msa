@@ -1,11 +1,12 @@
 package com.yellowsunn.userservice.application
 
-import com.yellowsunn.userservice.application.dto.UserSaveRequestDto
 import com.yellowsunn.userservice.application.dto.UserResponseDto
+import com.yellowsunn.userservice.application.dto.UserSaveRequestDto
 import com.yellowsunn.userservice.constant.UserProvider
 import com.yellowsunn.userservice.constant.UserRole
 import com.yellowsunn.userservice.domain.user.User
 import com.yellowsunn.userservice.domain.user.UserRepository
+import com.yellowsunn.userservice.exception.UserNotFoundException
 import io.mockk.every
 import io.mockk.mockk
 import org.assertj.core.api.Assertions.assertThat
@@ -38,7 +39,16 @@ class UserServiceTest {
         every { mockUserRepository.findByUserId(userId) } returns null
 
         assertThatThrownBy { userService.getUserByUserId(userId) }
-            .isInstanceOf(IllegalArgumentException::class.java)
+            .isInstanceOf(UserNotFoundException::class.java)
+    }
+
+    @Test
+    fun should_ThrowException_When_InvalidEmail() {
+        val email = "invalid@email.com"
+        every { mockUserRepository.findByEmail(email) } returns null
+
+        assertThatThrownBy { userService.getUserByEmail(email) }
+            .isInstanceOf(UserNotFoundException::class.java)
     }
 
     @Test
