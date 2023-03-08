@@ -1,5 +1,6 @@
 package com.yellwsunn.authservice.infrastructure.http
 
+import com.yellowsunn.common.protocol.ResultResponse
 import com.yellwsunn.authservice.domain.user.User
 import com.yellwsunn.authservice.domain.user.UserReactiveRepository
 import com.yellwsunn.authservice.domain.user.command.UserSaveCommand

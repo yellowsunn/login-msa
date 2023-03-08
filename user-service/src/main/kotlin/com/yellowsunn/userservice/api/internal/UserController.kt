@@ -1,6 +1,6 @@
 package com.yellowsunn.userservice.api.internal
 
-import com.yellowsunn.userservice.api.ResultResponse
+import com.yellowsunn.common.protocol.ResultResponse
 import com.yellowsunn.userservice.application.UserService
 import com.yellowsunn.userservice.application.dto.UserSaveRequestDto
 import com.yellowsunn.userservice.application.dto.UserResponseDto
@@ -45,7 +45,7 @@ class UserController(
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(UserNotFoundException::class)
-    protected fun handleUserNotFoundException(e: UserNotFoundException): ResultResponse<Unit> {
+    protected fun handleUserNotFoundException(e: UserNotFoundException): ResultResponse<Void> {
         return ResultResponse.fail(e.message)
     }
 }

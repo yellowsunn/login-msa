@@ -1,6 +1,6 @@
 package com.yellowsunn.userservice.api.external
 
-import com.yellowsunn.userservice.api.ResultResponse
+import com.yellowsunn.common.protocol.ResultResponse
 import com.yellowsunn.userservice.application.ExternalUserService
 import com.yellowsunn.userservice.application.dto.ExternalUserResponseDto
 import org.springframework.web.bind.annotation.GetMapping
