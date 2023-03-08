@@ -1,9 +1,9 @@
-package com.yellowsunn.userservice.presentation
+package com.yellowsunn.userservice.api.internal
 
+import com.yellowsunn.userservice.api.ResultResponse
 import com.yellowsunn.userservice.application.UserService
-import com.yellowsunn.userservice.application.dto.UserResponseDto
 import com.yellowsunn.userservice.application.dto.UserSaveRequestDto
-import com.yellowsunn.userservice.application.dto.UserSaveResponseDto
+import com.yellowsunn.userservice.application.dto.UserResponseDto
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -22,7 +22,7 @@ class UserController(
     }
 
     @PostMapping("/api/v1/users")
-    fun saveUser(@RequestBody userSaveRequestDto: UserSaveRequestDto): ResultResponse<UserSaveResponseDto> {
+    fun saveUser(@RequestBody userSaveRequestDto: UserSaveRequestDto): ResultResponse<UserResponseDto> {
         return ResultResponse.ok(
             userService.saveUser(userSaveRequestDto)
         )

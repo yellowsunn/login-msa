@@ -1,8 +1,7 @@
 package com.yellowsunn.userservice.application
 
-import com.yellowsunn.userservice.application.dto.UserResponseDto
 import com.yellowsunn.userservice.application.dto.UserSaveRequestDto
-import com.yellowsunn.userservice.application.dto.UserSaveResponseDto
+import com.yellowsunn.userservice.application.dto.UserResponseDto
 import com.yellowsunn.userservice.constant.UserProvider
 import com.yellowsunn.userservice.constant.UserRole
 import com.yellowsunn.userservice.domain.user.User
@@ -52,7 +51,7 @@ class UserServiceTest {
         every { mockUserRepository.findByEmail(any()) } returns null
         every { mockUserRepository.save(any()) } returnsArgument 0
 
-        val responseDto: UserSaveResponseDto = userService.saveUser(requestDto)
+        val responseDto: UserResponseDto = userService.saveUser(requestDto)
 
         assertThat(responseDto.email).isEqualTo(requestDto.email)
     }

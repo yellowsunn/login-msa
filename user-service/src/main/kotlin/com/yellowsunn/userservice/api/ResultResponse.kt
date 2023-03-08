@@ -1,4 +1,4 @@
-package com.yellowsunn.userservice.presentation
+package com.yellowsunn.userservice.api
 
 data class ResultResponse<T>(
     val data: T?,

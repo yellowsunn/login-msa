@@ -1,8 +1,7 @@
 package com.yellowsunn.userservice.application
 
-import com.yellowsunn.userservice.application.dto.UserResponseDto
 import com.yellowsunn.userservice.application.dto.UserSaveRequestDto
-import com.yellowsunn.userservice.application.dto.UserSaveResponseDto
+import com.yellowsunn.userservice.application.dto.UserResponseDto
 import com.yellowsunn.userservice.domain.user.User
 import com.yellowsunn.userservice.domain.user.UserRepository
 import org.springframework.stereotype.Service
@@ -21,12 +20,12 @@ class UserService(
     }
 
     @Transactional
-    fun saveUser(userSaveRequestDto: UserSaveRequestDto): UserSaveResponseDto {
+    fun saveUser(userSaveRequestDto: UserSaveRequestDto): UserResponseDto {
         val user: User = userSaveRequestDto.convertToEntity()
         verifyValidEmail(user.email)
         val savedUser: User = userRepository.save(user)
 
-        return UserSaveResponseDto(savedUser)
+        return UserResponseDto(savedUser)
     }
 
     private fun verifyValidEmail(email: String) {
