@@ -1,3 +1,4 @@
+import com.google.cloud.tools.jib.gradle.JibExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val mockkVersion = "1.13.4"
@@ -5,6 +6,7 @@ val mockkVersion = "1.13.4"
 plugins {
     id("org.springframework.boot") version "3.0.4"
     id("io.spring.dependency-management") version "1.1.0"
+    id("com.google.cloud.tools.jib") version "3.3.1"
     kotlin("jvm") version "1.7.22"
     kotlin("plugin.spring") version "1.7.22"
     kotlin("plugin.jpa") version "1.7.22"
@@ -46,4 +48,16 @@ tasks.withType<Test> {
 
 noArg {
     annotation("jakarta.persistence.Entity")
+}
+
+configure<JibExtension> {
+    from {
+        image = "eclipse-temurin:17-jre-alpine"
+    }
+    to {
+        image = "yellowsunn/login-msa-user-app"
+    }
+    container {
+        ports = listOf("8080")
+    }
 }
