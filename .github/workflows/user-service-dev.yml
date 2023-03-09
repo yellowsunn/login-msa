@@ -20,4 +20,9 @@ jobs:
           format: yyyyMMDDHHmmss
           utcOffset: "+09:00"
       - name: Get deploy version
-        run: echo "${{ steps.current-time.outputs.formattedTime }}"
+        run: echo "DEV-${{ steps.current-time.outputs.formattedTime }}"
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: Build with Gradle
+        run: ./gradlew :user-service:build
+
