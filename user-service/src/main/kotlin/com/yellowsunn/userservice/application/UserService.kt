@@ -22,8 +22,8 @@ class UserService(
 
     @Transactional(readOnly = true)
     fun getUserByEmail(email: String): UserResponseDto {
-        val user: User = (userRepository.findByEmail(email)
-            ?: throw UserNotFoundException())
+        val user: User = userRepository.findByEmail(email)
+            ?: throw UserNotFoundException()
 
         return UserResponseDto(user)
     }
