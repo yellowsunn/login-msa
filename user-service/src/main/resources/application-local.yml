@@ -6,6 +6,7 @@ spring:
       on-profile: local
   datasource:
     url: jdbc:h2:mem:test_db;MODE=MySQL
+    driver-class-name: org.h2.Driver
   h2:
     console:
       enabled: true
