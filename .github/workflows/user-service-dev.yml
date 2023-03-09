@@ -24,10 +24,15 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Build and Deploy image
-        run: |
-          ./gradlew :user-service:jib \
-            -Djib.to.tags=${{ env.deployment-version }} \
-            -Djib.to.auth.username="${{ secrets.DOCKER_HUB_USERNAME }}" \
-            -Djib.to.auth.password="${{ secrets.DOCKER_HUB_PASSWORD }}" \
-            -Djib.container.jvmFlags="-Dspring.profiles.active=dev,-Ddb-url=${{ secrets.USER_DB_URL }},-Ddb-username=${{ secrets.USER_DB_USERNAME }},-Ddb-password=${{ secrets.USER_DB_PASSWORD }}" \ 
+        uses: gradle/gradle-build-action@v2
+        with:
+          gradle-version: wrapper
+          cache-read-only: true
+          arguments: |
+            :user-service:jib
+            -Djib.to.tags=${{ env.deployment-version }}
+            -Djib.to.auth.username=${{ secrets.DOCKER_HUB_USERNAME }}
+            -Djib.to.auth.password=${{ secrets.DOCKER_HUB_PASSWORD }}
+            -Djib.container.jvmFlags=-Dspring.profiles.active=dev,-Ddb-url=${{ secrets.USER_DB_URL }},-Ddb-username=${{ secrets.USER_DB_USERNAME }},-Ddb-password=${{ secrets.USER_DB_PASSWORD }}
             --stacktrace
+
