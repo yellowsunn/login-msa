@@ -1,6 +1,6 @@
 package com.yellwsunn.authservice.config.security.oauth2
 
-import com.yellwsunn.authservice.domain.token.AccessTokenService
+import com.yellowsunn.common.auth.accesstoken.AccessTokenHandler
 import com.yellwsunn.authservice.config.security.oauth2.dto.CustomOAuth2User
 import kotlinx.coroutines.reactor.awaitSingleOrNull
 import kotlinx.coroutines.reactor.mono
@@ -18,7 +18,7 @@ import java.net.URI
 
 @Component
 class CustomRedirectServerAuthenticationSuccessHandler(
-    private val accessTokenService: AccessTokenService,
+    private val accessTokenHandler: AccessTokenHandler,
 ) : ServerAuthenticationSuccessHandler {
     companion object {
         private const val CALLBACK_URL = "CALLBACK_URL"
@@ -50,7 +50,7 @@ class CustomRedirectServerAuthenticationSuccessHandler(
         }
 
         val customOAuth2User: CustomOAuth2User = authentication.principal as CustomOAuth2User
-        val accessToken: String = accessTokenService.generateToken(
+        val accessToken: String = accessTokenHandler.generateToken(
             customOAuth2User.convertToAccessTokenPayload()
         )
 

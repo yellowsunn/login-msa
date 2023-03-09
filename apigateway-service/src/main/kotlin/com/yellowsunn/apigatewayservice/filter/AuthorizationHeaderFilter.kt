@@ -1,7 +1,7 @@
 package com.yellowsunn.apigatewayservice.filter
 
-import com.yellowsunn.apigatewayservice.domain.AccessTokenPayload
-import com.yellowsunn.apigatewayservice.domain.AccessTokenService
+import com.yellowsunn.common.auth.accesstoken.AccessTokenParser
+import com.yellowsunn.common.auth.accesstoken.AccessTokenPayload
 import org.springframework.cloud.gateway.filter.GatewayFilter
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory
 import org.springframework.http.HttpHeaders
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component
 
 @Component
 class AuthorizationHeaderFilter(
-    val accessTokenService: AccessTokenService,
+    val accessTokenService: AccessTokenParser,
 ) : AbstractGatewayFilterFactory<Any>() {
     companion object {
         private const val USER_ID_HEADER = "X_USER_ID"
