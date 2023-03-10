@@ -38,7 +38,7 @@ jobs:
       - name: Dispatch changing image tag action
         uses: octokit/request-action@v2.x
         with:
-          route: /repos/{owner}/{repo}/dispatches
+          route: POST /repos/{owner}/{repo}/dispatches
           owner: yellowsunn
           repo: argocd-manifest
           event_type: change-image-tag
