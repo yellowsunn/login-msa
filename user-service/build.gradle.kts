@@ -54,9 +54,6 @@ configure<JibExtension> {
     from {
         image = "eclipse-temurin:17-jre-alpine"
     }
-    to {
-        image = "yellowsunn/login-msa-user-app"
-    }
     container {
         ports = listOf("8080")
     }
