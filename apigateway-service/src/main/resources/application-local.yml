@@ -6,12 +6,6 @@ spring:
       on-profile: local
   cloud:
     gateway:
-      globalcors:
-        cors-configurations:
-          '[/**]':
-            allowed-origins: "*"
-            allowed-headers: "*"
-            allowed-methods: "*"
       routes:
         - id: auth-service-oauth-login
           uri: http://localhost:8001

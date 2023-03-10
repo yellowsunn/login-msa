@@ -1,0 +1,18 @@
+spring:
+  config:
+    activate:
+      on-profile: dev
+  cloud:
+    gateway:
+      routes:
+        - id: user-service
+          uri: dev-login-msa-user-app-svc.default.svc.cluster.local:8080
+          predicates:
+            - Path=/api/*/users/**
+          filters:
+            - RemoveRequestHeader=Cookie
+            - AuthorizationHeaderFilter
+            - RewritePath=/api/(?<version>\w+)/users/(?<path>.*), /external/api/$\{version}/users/$\{path}
+
+access-token:
+  secret: 4t7w!z%C*F-JaNdRgUkXp2s5v8x/A?D(G+KbPeShVmYq3t6w9z$B&E)H@McQfTjW
