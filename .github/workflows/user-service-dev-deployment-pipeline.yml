@@ -35,4 +35,17 @@ jobs:
             -Djib.to.auth.password=${{ secrets.DOCKER_HUB_PASSWORD }}
             -Djib.container.jvmFlags=-Dspring.profiles.active=dev,-Ddb-url=${{ secrets.USER_DB_URL }},-Ddb-username=${{ secrets.USER_DB_USERNAME }},-Ddb-password=${{ secrets.USER_DB_PASSWORD }}
             --stacktrace
+      - name: Dispatch changing image tag action
+        uses: octokit/request-action@v2.x
+        with:
+          route: /repos/{owner}/{repo}/dispatches
+          owner: yellowsunn
+          repo: argocd-manifest
+          event_type: change-image-tag
+          client_payload: |
+            {
+              "test": "테스트 입니다."
+            }
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_HUB_PERSONAL_ACCESS_TOKEN }}
 
