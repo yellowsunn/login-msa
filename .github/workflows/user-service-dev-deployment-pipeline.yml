@@ -5,6 +5,8 @@ jobs:
   build-deploy:
     runs-on:
       - ubuntu-latest
+    env:
+      container-image: yellowsunn/login-msa-user-app
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
@@ -30,6 +32,7 @@ jobs:
           cache-read-only: true
           arguments: |
             :user-service:jib
+            -Djib.to.image=${{ env.container-image }}
             -Djib.to.tags=${{ env.deployment-version }}
             -Djib.to.auth.username=${{ secrets.DOCKER_HUB_USERNAME }}
             -Djib.to.auth.password=${{ secrets.DOCKER_HUB_PASSWORD }}
@@ -44,8 +47,10 @@ jobs:
           event_type: change-image-tag
           client_payload: |
             {
-              "test": "테스트 입니다."
+              "requested-event-path": "${{ env.GITHUB_EVENT_PATH }}",
+              "container-image": "${{ env.container-image }}",
+              "deployment-version": "${{ env.deployment-version }}",
+              "overlay-path": "manifest/login-msa/user-app"
             }
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_HUB_PERSONAL_ACCESS_TOKEN }}
-
