@@ -6,7 +6,7 @@ spring:
     gateway:
       routes:
         - id: user-service
-          uri: dev-login-msa-user-app-svc.default.svc.cluster.local:8080
+          uri: http://dev-login-msa-user-app-svc.default.svc.cluster.local:8080
           predicates:
             - Path=/api/*/users/**
           filters:
