@@ -31,5 +31,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           file: ${{ env.GITHUB_WORKSPACE }}/vuejs-service/Dockerfile
+          build-args: ACTIVE_PROFILES=dev
+          no-cache: true
           push: true
           tags: ${{ env.container-image }}:latest,${{ env.container-image }}:${{ env.deployment-version }}
