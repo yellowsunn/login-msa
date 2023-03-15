@@ -4,6 +4,10 @@ spring:
   config:
     activate:
       on-profile: local
+
+  cloud:
+    config:
+      enabled: false
   datasource:
     url: jdbc:h2:mem:test_db;MODE=MySQL
     driver-class-name: org.h2.Driver

@@ -21,10 +21,13 @@ repositories {
     mavenCentral()
 }
 
+extra["springCloudVersion"] = "2022.0.1"
+
 dependencies {
     implementation(project(":common-lib:data"))
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.cloud:spring-cloud-starter-config")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.flywaydb:flyway-core")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -33,6 +36,12 @@ dependencies {
     implementation("org.flywaydb:flyway-mysql")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.mockk:mockk:${mockkVersion}")
+}
+
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
+    }
 }
 
 tasks.withType<KotlinCompile> {

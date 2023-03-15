@@ -2,8 +2,14 @@ spring:
   config:
     activate:
       on-profile: dev
+    import: configserver:http://config-server.yellowsunn.com:8080
+
+  cloud:
+    config:
+      profile: ${spring.profiles.active}
+      name: mysql
   datasource:
-    url: jdbc:mysql://dev-mysql.yellowsunn.com:3306/user_db?useSSL=false&allowPublicKeyRetrieval=true
-    username: root
-    password: password
+    url: jdbc:mysql://${yellowsunn.mysql.url}/user_db?useSSL=false&allowPublicKeyRetrieval=true
+    username: ${yellowsunn.mysql.username}
+    password: ${yellowsunn.mysql.password}
     driver-class-name: com.mysql.cj.jdbc.Driver
