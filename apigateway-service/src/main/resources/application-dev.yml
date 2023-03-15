@@ -6,7 +6,7 @@ spring:
     gateway:
       routes:
         - id: user-service
-          uri: dev-login-msa-user-app-svc.default.svc.cluster.local:8080
+          uri: http://dev-login-msa-user.yellowsunn.com:8080
           predicates:
             - Path=/api/*/users/**
           filters:
@@ -15,4 +15,5 @@ spring:
             - RewritePath=/api/(?<version>\w+)/users/(?<path>.*), /external/api/$\{version}/users/$\{path}
 
 access-token:
-  secret: 4t7w!z%C*F-JaNdRgUkXp2s5v8x/A?D(G+KbPeShVmYq3t6w9z$B&E)H@McQfTjW
+  secret: +KbPeShVmYq3t6w9y$B&E)H@McQfTjWnZr4u7x!A%C*F-JaNdRgUkXp2s5v8y/B?
+
