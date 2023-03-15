@@ -19,7 +19,7 @@ import reactor.core.publisher.Mono
 @Component
 class UserWebClient(
     private val webClient: WebClient,
-    @Value("\${micro-services.user-endpoint}") private val userEndpoint: String,
+    @Value("\${micro-services.user-service-url}") private val userEndpoint: String,
 ) : UserReactiveRepository {
     private val logger: Logger = LoggerFactory.getLogger(this::class.java)
 

@@ -10,8 +10,8 @@ import java.time.Duration
 class AccessTokenConfig {
     @Bean
     fun accessTokenHandler(
-        @Value("\${access-token.secret}") secret: String,
-        @Value("\${access-token.expiration}") expiration: Duration,
+        @Value("\${yellowsunn.access-token.secret}") secret: String,
+        @Value("\${yellowsunn.access-token.expiration}") expiration: Duration,
     ): AccessTokenHandler {
         return AccessTokenHandler(secret, expiration)
     }

@@ -5,6 +5,9 @@ spring:
   config:
     activate:
       on-profile: local-gateway
+  cloud:
+    config:
+      enabled: false
   security:
     oauth2:
       client:
@@ -16,7 +19,7 @@ spring:
               - profile
               - email
             # apigateway-service local url
-            redirect-uri: http://localhost:8000/login/oauth2/code/google
+            redirect-uri: ${micro-services.api-gateway-url}/login/oauth2/code/google
   data:
     redis:
       host: localhost
@@ -24,9 +27,10 @@ spring:
       connect-timeout: 3000
       timeout: 1000
 
-access-token:
-  expiration: 1d
-  secret: 4t7w!z%C*F-JaNdRgUkXp2s5v8x/A?D(G+KbPeShVmYq3t6w9z$B&E)H@McQfTjW
+yellowsunn:
+  access-token:
+    expiration: 1d
+    secret: 4t7w!z%C*F-JaNdRgUkXp2s5v8x/A?D(G+KbPeShVmYq3t6w9z$B&E)H@McQfTjW
 
 logging:
   level:
@@ -37,4 +41,5 @@ logging:
           server: trace
 
 micro-services:
-  user-endpoint: http://localhost:8002
+  user-service-url: http://localhost:8002
+  api-gateway-url: http://localhost:8000

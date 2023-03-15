@@ -11,7 +11,7 @@ server:
         name: X_SESSION_ID
 
 redis-session:
-  inactive-interval: 5m
+  inactive-interval: 1m
 
 management:
   endpoints:

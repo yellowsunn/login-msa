@@ -7,7 +7,7 @@ spring:
   cloud:
     config:
       profile: ${spring.profiles.active}
-      name: loginmsa
+      name: oauth, redis, token
   security:
     oauth2:
       client:
@@ -16,4 +16,14 @@ spring:
             scope:
               - profile
               - email
-            redirect-uri: http://dev-login-msa-api-gtw:8000/login/oauth2/code/google
+            redirect-uri: ${micro-services.api-gateway-url}/login/oauth2/code/google
+  data:
+    redis:
+      host: ${yellowsunn.redis.host}
+      port: ${yellowsunn.redis.port}
+      connect-timeout: 3000
+      timeout: 1000
+
+micro-services:
+  user-service-url: http://dev-login-msa-user.yellowsunn.com:8080
+  api-gateway-url: http://dev-login-msa-api-gtw.yellowsunn.com:8080
