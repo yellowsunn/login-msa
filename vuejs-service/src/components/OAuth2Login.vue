@@ -11,7 +11,7 @@ export default {
     async googleLogin() {
       const prevUrl = sessionStorage.getItem('prev_url') || '/'
       const callbackUrl = `${window.location.origin}/set-token?prev_url=${prevUrl}`
-      window.location = `http://localhost:8000/oauth2/authorization/google?callback_url=${callbackUrl}`
+      window.location = `${process.env.VUE_APP_API_GATEWAY_URL}/oauth2/authorization/google?callback_url=${callbackUrl}`
     }
   }
 }
