@@ -1,0 +1,19 @@
+spring:
+  config:
+    activate:
+      on-profile: dev
+    import: configserver:http://config-server.yellowsunn.com:8080
+
+  cloud:
+    config:
+      profile: ${spring.profiles.active}
+      name: loginmsa
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            scope:
+              - profile
+              - email
+            redirect-uri: http://dev-login-msa-api-gtw:8000/login/oauth2/code/google

@@ -12,3 +12,9 @@ server:
 
 redis-session:
   inactive-interval: 5m
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
