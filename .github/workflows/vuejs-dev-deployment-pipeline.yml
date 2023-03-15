@@ -30,9 +30,25 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
-          file: ${{ env.GITHUB_WORKSPACE }}/vuejs-service/Dockerfile
-          context: ${{ env.GITHUB_WORKSPACE }}/vuejs-service
+          file: ./vuejs-service/Dockerfile
+          context: ./vuejs-service
           build-args: ACTIVE_PROFILES=dev
           no-cache: true
           push: true
           tags: ${{ env.container-image }}:latest,${{ env.container-image }}:${{ env.deployment-version }}
+      - name: Dispatch changing image tag action
+        uses: octokit/request-action@v2.x
+        with:
+          route: POST /repos/{owner}/{repo}/dispatches
+          owner: yellowsunn
+          repo: argocd-manifest
+          event_type: change-image-tag
+          client_payload: |
+            {
+              "requested-event-path": "${{ env.GITHUB_EVENT_PATH }}",
+              "container-image": "${{ env.container-image }}",
+              "deployment-version": "${{ env.deployment-version }}",
+              "overlay-path": "manifest/login-msa/vuejs-app/overlays/dev"
+            }
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_HUB_PERSONAL_ACCESS_TOKEN }}
