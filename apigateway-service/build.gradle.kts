@@ -23,6 +23,8 @@ dependencies {
     implementation(project(":common-lib:auth"))
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.springframework.cloud:spring-cloud-starter-gateway")
+    implementation("org.springframework.cloud:spring-cloud-starter-config")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("io.netty:netty-resolver-dns-native-macos:4.1.68.Final:osx-aarch_64") // MacOS m1 dns error fix
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }

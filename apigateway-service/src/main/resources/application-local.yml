@@ -5,6 +5,8 @@ spring:
     activate:
       on-profile: local
   cloud:
+    config:
+      enabled: false
     gateway:
       routes:
         - id: auth-service-oauth-login
@@ -28,5 +30,6 @@ spring:
             - AuthorizationHeaderFilter
             - RewritePath=/api/(?<version>\w+)/users/(?<path>.*), /external/api/$\{version}/users/$\{path}
 
-access-token:
-  secret: 4t7w!z%C*F-JaNdRgUkXp2s5v8x/A?D(G+KbPeShVmYq3t6w9z$B&E)H@McQfTjW
+yellowsunn:
+  access-token:
+    secret: 4t7w!z%C*F-JaNdRgUkXp2s5v8x/A?D(G+KbPeShVmYq3t6w9z$B&E)H@McQfTjW

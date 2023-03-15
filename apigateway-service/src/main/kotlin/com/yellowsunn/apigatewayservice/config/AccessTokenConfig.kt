@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration
 class AccessTokenConfig {
     @Bean
     fun accessTokenParser(
-        @Value("\${access-token.secret}") secret: String,
+        @Value("\${yellowsunn.access-token.secret}") secret: String,
     ): AccessTokenParser {
         return AccessTokenParser(secret)
     }

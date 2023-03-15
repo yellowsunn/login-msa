@@ -2,7 +2,11 @@ spring:
   config:
     activate:
       on-profile: dev
+    import: configserver:http://config-server.yellowsunn.com:8080
   cloud:
+    config:
+      profile: ${spring.profiles.active}
+      name: token
     gateway:
       routes:
         - id: user-service
@@ -13,7 +17,3 @@ spring:
             - RemoveRequestHeader=Cookie
             - AuthorizationHeaderFilter
             - RewritePath=/api/(?<version>\w+)/users/(?<path>.*), /external/api/$\{version}/users/$\{path}
-
-access-token:
-  secret: +KbPeShVmYq3t6w9y$B&E)H@McQfTjWnZr4u7x!A%C*F-JaNdRgUkXp2s5v8y/B?
-

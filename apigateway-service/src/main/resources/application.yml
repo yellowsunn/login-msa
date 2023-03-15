@@ -9,3 +9,17 @@ spring:
             allowed-origins: "*"
             allowed-headers: "*"
             allowed-methods: "*"
+      routes:
+        - id: user-service
+          predicates:
+            - Path=/api/*/users/**
+          filters:
+            - RemoveRequestHeader=Cookie
+            - AuthorizationHeaderFilter
+            - RewritePath=/api/(?<version>\w+)/users/(?<path>.*), /external/api/$\{version}/users/$\{path}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
