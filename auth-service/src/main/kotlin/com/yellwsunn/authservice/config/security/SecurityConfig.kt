@@ -16,7 +16,10 @@ class SecurityConfig {
         authenticationSuccessHandler: CustomRedirectServerAuthenticationSuccessHandler,
     ): SecurityWebFilterChain {
         return http
-            .authorizeExchange { it.anyExchange().authenticated() }
+            .authorizeExchange {
+                it.pathMatchers("/actuator/**").permitAll()
+                    .anyExchange().authenticated()
+            }
             .oauth2Login { it.authenticationSuccessHandler(authenticationSuccessHandler) }
             .build()
     }

@@ -26,4 +26,4 @@ spring:
 
 micro-services:
   user-service-url: http://dev-login-msa-user.yellowsunn.com:8080
-  api-gateway-url: http://dev-login-msa-api-gtw.yellowsunn.com:8080
+  api-gateway-url: http://dev-login-msa-api-gtw.yellowsunn.com
